@@ -16,6 +16,17 @@ class App extends React.Component{
 
   }
 
+  fileUpload(e){
+   console.log(e.target.files[0])
+    let fd = new FormData()
+  fd.append("avatar",e.target.files[0])
+   axios.post("http://localhost:8080/profile",fd,{headers:{
+    'Content-Type': "multipart/form-data"
+  }})
+  }
+
+
+
   getValue1(e){
     this.category=e.target.value;  }
 
@@ -41,7 +52,6 @@ class App extends React.Component{
 console.log(res)
    })
   }
-
   render(){
 
     return(
@@ -61,8 +71,11 @@ console.log(res)
           <input type="text" onChange={(i)=> this.getValue5(i)}></input><br></br>
           <label>ocassion</label>
           <input type="text" onChange={(j)=> this.getValue6(j)}></input><br></br>
-          <button onClick={()=> this.Submit()}>Add item</button>
-        </form>
+          <label>upload image here:</label>
+<input type="file" onChange={(e)=>{this.fileUpload(e)}}></input>
+          <button onClick={()=> this.Submit()}>Add item</button><br></br>
+
+<br></br>       </form>
       </div>
     )
   }
