@@ -13,16 +13,21 @@ class App extends React.Component{
     this.state.price={};
     this.state.jewellery_type={};
     this.state.ocassion={};
+    this.state.image={};
 
   }
 
   fileUpload(e){
    console.log(e.target.files[0])
     let fd = new FormData()
-  fd.append("avatar",e.target.files[0])
+  fd.append("file",e.target.files[0])
    axios.post("http://localhost:8080/profile",fd,{headers:{
     'Content-Type': "multipart/form-data"
-  }})
+  }}).then((res)=>{
+    this.setState({
+      image:res.data
+    })
+  })
   }
 
 
@@ -46,7 +51,7 @@ class App extends React.Component{
             this.ocassion=j.target.value;  }
 
   Submit(){
-    let obj={category:this.category, id:this.id, name:this.name, price:this.price, jewellery_type:this.jewellery_type, ocassion:this.ocassion}
+    let obj={category:this.category, id:this.id, name:this.name, price:this.price, jewellery_type:this.jewellery_type, ocassion:this.ocassion,image:this.state.image}
     axios.post('http://localhost:8080/product', obj)
   .then((res)=>{
 console.log(res)
