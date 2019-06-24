@@ -14,6 +14,7 @@ class App extends React.Component{
     this.state.jewellery_type={};
     this.state.ocassion={};
     this.state.image={};
+    this.state.desc={};
 
   }
 
@@ -50,8 +51,11 @@ class App extends React.Component{
           getValue6(j){
             this.ocassion=j.target.value;  }
 
+            getValue7(k){
+              this.desc=k.target.value;  }
+
   Submit(){
-    let obj={category:this.category, id:this.id, name:this.name, price:this.price, jewellery_type:this.jewellery_type, ocassion:this.ocassion,image:this.state.image}
+    let obj={category:this.category, id:this.id, name:this.name, price:this.price, jewellery_type:this.jewellery_type, ocassion:this.ocassion,image:this.state.image,desc:this.desc}
     axios.post('http://localhost:8080/product', obj)
   .then((res)=>{
 console.log(res)
@@ -64,7 +68,20 @@ console.log(res)
         <h4>Add New Product</h4>
         <form><br></br>
           <label>category</label>
-          <input type="text" onChange={(e)=> this.getValue1(e)}></input>
+          <select 
+          onChange={(e)=> this.getValue1(e)}>>
+            <option value="Pendant">Pendant</option>
+            <option value="Earring">Earring</option>
+            <option value="Necklace">Necklace</option>
+            <option value="Jhumki">Jhumki</option>
+            <option value="Mangalsutra">Mangalsutra</option>
+            <option value="Bangles">Bangles</option>
+            <option value="Chain">Chain</option>
+            <option value="Nosepin">Nosepin</option>
+            <option value="Ring">Ring</option>
+            <option value="Watch">Watch</option>
+
+          </select>
           <br></br>
           <label>ID</label>
           <input type="number" onChange={(f)=> this.getValue2(f)}></input><br></br>
@@ -73,9 +90,24 @@ console.log(res)
           <label>price</label>
           <input type="number" onChange={(h)=> this.getValue4(h)}></input><br></br>
           <label>jewellery_type</label>
-          <input type="text" onChange={(i)=> this.getValue5(i)}></input><br></br>
+          <select 
+          onChange={(i)=> this.getValue5(i)}>>
+            <option value="American Diamond">American Diamond</option>
+            <option value="Victorian Jewellery">Victorian Jewellery</option>
+            <option value="Antique Items">Antique Items</option>
+
+          </select>
+            <br></br>
           <label>ocassion</label>
-          <input type="text" onChange={(j)=> this.getValue6(j)}></input><br></br>
+          <select 
+          onChange={(j)=> this.getValue6(j)}>>
+            <option value="Diwali">Diwali</option>
+            <option value="Wedding">wedding</option>
+            <option value="Raksha Bandhan">Raksha bandhan</option>
+
+          </select><br></br>
+          <label>Description</label>
+          <input type="text" onChange={(k)=> this.getValue7(k)}></input><br></br>
           <label>upload image here:</label>
 <input type="file" onChange={(e)=>{this.fileUpload(e)}}></input>
           <button onClick={()=> this.Submit()}>Add item</button><br></br>
