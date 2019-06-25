@@ -15,6 +15,8 @@ class App extends React.Component{
     this.state.ocassion={};
     this.state.image={};
     this.state.desc={};
+    this.state.best={}
+    this.state.new={};
 
   }
 
@@ -54,8 +56,16 @@ class App extends React.Component{
             getValue7(k){
               this.desc=k.target.value;  }
 
+      Best(e){
+        this.best=e.target.value;
+      }
+      New(e){
+        this.new=e.target.value;
+      }
+      
+
   Submit(){
-    let obj={category:this.category, id:this.id, name:this.name, price:this.price, jewellery_type:this.jewellery_type, ocassion:this.ocassion,image:this.state.image,desc:this.desc}
+    let obj={category:this.category, id:this.id, name:this.name, price:this.price, jewellery_type:this.jewellery_type, ocassion:this.ocassion,image:this.state.image,desc:this.desc, best:this.best, new:this.new}
     axios.post('http://localhost:8080/product', obj)
   .then((res)=>{
 console.log(res)
@@ -103,11 +113,21 @@ console.log(res)
           onChange={(j)=> this.getValue6(j)}>>
             <option value="Diwali">Diwali</option>
             <option value="Wedding">wedding</option>
-            <option value="Raksha Bandhan">Raksha bandhan</option>
+            <option value="Navratra">Navratra</option>
 
           </select><br></br>
           <label>Description</label>
           <input type="text" onChange={(k)=> this.getValue7(k)}></input><br></br>
+          <label>Best Seller    </label>
+          <label>Yes</label>
+          <input type="radio" name="best" value="Yes" onClick={(e)=> this.Best(e)}></input>
+          <label>No</label>
+           <input type="radio" name="best" value="No" onClick={(e)=> this.Best(e)}></input><br></br>
+          <label>New Arrival     </label>
+          <label>Yes</label>
+          <input type="radio" name="new" value="Yes" onClick={(e)=> this.New(e)}></input> 
+          <label>No</label>
+          <input type="radio" name="new" value="No" onClick={(e)=> this.New(e)}></input><br></br>
           <label>upload image here:</label>
 <input type="file" onChange={(e)=>{this.fileUpload(e)}}></input>
           <button onClick={()=> this.Submit()}>Add item</button><br></br>
