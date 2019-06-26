@@ -79,7 +79,7 @@ console.log(res)
         <form><br></br>
           <label>category</label>
           <select 
-          onChange={(e)=> this.getValue1(e)}>>
+          onChange={(e)=> this.getValue1(e)}>
             <option value="Pendant">Pendant</option>
             <option value="Earring">Earring</option>
             <option value="Necklace">Necklace</option>
