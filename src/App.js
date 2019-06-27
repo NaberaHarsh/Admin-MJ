@@ -75,7 +75,7 @@ console.log(res)
 
     return(
       <div style={{textAlign:"center"}}>
-        <h4>Add New Product</h4>
+        <h2>Add New Product</h2>
         <form><br></br>
           <label>category</label>
           <select 
